@@ -1,12 +1,13 @@
 package tests
 
 import (
-	"github.com/jfrog/jfrog-client-go/artifactory"
-	"github.com/jfrog/jfrog-client-go/config"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/url"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/artifactory"
+	"github.com/frlute/jfrog-client-go/config"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGetArtifactoryVersionWithCustomHttpClient(t *testing.T) {

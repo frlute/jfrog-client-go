@@ -1,10 +1,11 @@
 package tests
 
 import (
-	"github.com/jfrog/gofrog/version"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
+	"github.com/jfrog/gofrog/version"
+
+	"github.com/frlute/jfrog-client-go/artifactory/services"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -673,6 +674,7 @@ func federatedVagrantTest(t *testing.T) {
 		validateRepoConfig(t, repoKey, vfp)
 	}
 }
+
 func federatedYumTest(t *testing.T) {
 	repoKey := GenerateRepoKeyForRepoServiceTest()
 	yfp := services.NewYumFederatedRepositoryParams()
@@ -697,6 +699,7 @@ func federatedYumTest(t *testing.T) {
 		validateRepoConfig(t, repoKey, yfp)
 	}
 }
+
 func federatedCreateWithParamTest(t *testing.T) {
 	repoKey := GenerateRepoKeyForRepoServiceTest()
 	params := services.NewFederatedRepositoryBaseParams()

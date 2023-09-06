@@ -1,13 +1,14 @@
 package auth
 
 import (
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
 	"sync"
 	"time"
 
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
 )
 
 var expiryHandleMutex sync.Mutex
@@ -271,5 +272,6 @@ func (ccf *CommonConfigFields) CreateHttpClientDetails() httputils.HttpClientDet
 		Password:    ccf.Password,
 		ApiKey:      ccf.ApiKey,
 		AccessToken: ccf.AccessToken,
-		Headers:     utils.CopyMap(ccf.GetSshAuthHeaders())}
+		Headers:     utils.CopyMap(ccf.GetSshAuthHeaders()),
+	}
 }

@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/utils/log"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -14,13 +14,13 @@ import (
 	"strings"
 	"sync"
 
-	buildinfo "github.com/jfrog/build-info-go/entities"
+	buildinfo "github.com/frlute/build-info-go/entities"
 	"github.com/jfrog/gofrog/version"
 
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type RequiredArtifactProps int
@@ -321,7 +321,7 @@ func streamToFile(reader io.Reader) (filePath string, err error) {
 }
 
 func LogSearchResults(numOfArtifacts int) {
-	var msgSuffix = "artifacts."
+	msgSuffix := "artifacts."
 	if numOfArtifacts == 1 {
 		msgSuffix = "artifact."
 	}

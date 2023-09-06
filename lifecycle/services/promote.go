@@ -2,8 +2,9 @@ package services
 
 import (
 	"encoding/json"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
 	"path"
+
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
 const (

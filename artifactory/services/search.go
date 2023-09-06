@@ -1,12 +1,12 @@
 package services
 
 import (
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
 	"github.com/jfrog/gofrog/version"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
 )
 
 type SearchService struct {

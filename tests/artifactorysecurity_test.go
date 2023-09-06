@@ -2,19 +2,22 @@ package tests
 
 import (
 	"fmt"
-	"github.com/jfrog/jfrog-client-go/artifactory/auth"
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
-	accessauth "github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils/log"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/artifactory/auth"
+	"github.com/frlute/jfrog-client-go/artifactory/services"
+	accessauth "github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils/log"
+	"github.com/stretchr/testify/assert"
 )
 
-const tokenRevokeSuccessResponse = "Token revoked"
-const tokenNotFoundResponse = "Token not found"
+const (
+	tokenRevokeSuccessResponse = "Token revoked"
+	tokenNotFoundResponse      = "Token not found"
+)
 
 func TestToken(t *testing.T) {
 	initArtifactoryTest(t)

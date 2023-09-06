@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type CreateReplicationService struct {
@@ -31,7 +31,7 @@ func (rs *CreateReplicationService) performRequest(params *utils.UpdateReplicati
 	}
 	httpClientsDetails := rs.ArtDetails.CreateHttpClientDetails()
 	utils.SetContentType("application/vnd.org.jfrog.artifactory.replications.ReplicationConfigRequest+json", &httpClientsDetails.Headers)
-	var url = rs.ArtDetails.GetUrl() + "api/replications/" + params.RepoKey
+	url := rs.ArtDetails.GetUrl() + "api/replications/" + params.RepoKey
 	log.Info("Creating replication...")
 	resp, body, err := rs.client.SendPut(url, content, &httpClientsDetails)
 	if err != nil {

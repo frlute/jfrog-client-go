@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
+	"github.com/frlute/jfrog-client-go/artifactory/services"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,7 +32,6 @@ func testCreateGroup(t *testing.T) {
 	assert.NoError(t, err)
 	assert.NotNil(t, allGroups)
 	assert.Contains(t, *allGroups, groupParams.GroupDetails.Name)
-
 }
 
 func testUpdateGroup(t *testing.T) {

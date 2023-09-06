@@ -1,9 +1,10 @@
 package httputils
 
 import (
-	"github.com/jfrog/jfrog-client-go/utils"
 	"net/http"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/utils"
 )
 
 type HttpClientDetails struct {
@@ -24,5 +25,6 @@ func (httpClientDetails HttpClientDetails) Clone() *HttpClientDetails {
 		Password:    httpClientDetails.Password,
 		ApiKey:      httpClientDetails.ApiKey,
 		AccessToken: httpClientDetails.AccessToken,
-		Headers:     headers}
+		Headers:     headers,
+	}
 }

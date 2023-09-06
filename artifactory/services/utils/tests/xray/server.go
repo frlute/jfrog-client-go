@@ -9,9 +9,9 @@ import (
 	"strings"
 
 	"github.com/buger/jsonparser"
-	"github.com/jfrog/jfrog-client-go/utils/log"
-	clienttests "github.com/jfrog/jfrog-client-go/utils/tests"
-	"github.com/jfrog/jfrog-client-go/xray/services"
+	"github.com/frlute/jfrog-client-go/utils/log"
+	clienttests "github.com/frlute/jfrog-client-go/utils/tests"
+	"github.com/frlute/jfrog-client-go/xray/services"
 )
 
 const (

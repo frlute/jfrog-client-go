@@ -1,14 +1,15 @@
 package services
 
 import (
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/stretchr/testify/assert"
+
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 func TestExtractRepo(t *testing.T) {
@@ -21,7 +22,6 @@ func TestExtractRepo(t *testing.T) {
 	}
 	if repo != "lfs-local" {
 		t.Error("Failed to extract repo from .lfsconfig file format. Expected: \"lfs-local\" Got: ", repo)
-
 	}
 	repo, err = extractRepo(testPath, "configExample", "http://localhost:8081/artifactory", configLfsUrlExtractor)
 	if err != nil {

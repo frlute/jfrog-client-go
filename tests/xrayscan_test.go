@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils/tests/xray"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/artifactory/services"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils/tests/xray"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
 )
 
 var testsXrayScanService *services.XrayScanService

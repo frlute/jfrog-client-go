@@ -5,12 +5,12 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
 const apiUri = "api/xray/scanBuild"
@@ -22,9 +22,11 @@ const consecutiveRetries = 10
 const connectionTimeout = 90 * time.Second
 
 // 15 seconds sleep between retry
-const sleepBetweenRetries = 15 * time.Second
-const stableConnectionWindow = 100 * time.Second
-const fatalFailureStatus = -1
+const (
+	sleepBetweenRetries    = 15 * time.Second
+	stableConnectionWindow = 100 * time.Second
+	fatalFailureStatus     = -1
+)
 
 type XrayScanService struct {
 	client     *jfroghttpclient.JfrogHttpClient

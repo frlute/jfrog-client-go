@@ -14,20 +14,20 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/jfrog/build-info-go/entities"
-	biutils "github.com/jfrog/build-info-go/utils"
+	"github.com/frlute/build-info-go/entities"
+	biutils "github.com/frlute/build-info-go/utils"
+	"github.com/frlute/jfrog-client-go/artifactory/services/fspatterns"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	ioutils "github.com/frlute/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 	"github.com/jfrog/gofrog/parallel"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/fspatterns"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	ioutils "github.com/jfrog/jfrog-client-go/utils/io"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
 )
 
 type UploadService struct {
@@ -398,7 +398,8 @@ func newUploadTaskData(path string, isDir bool, groups []string, uploadParams Up
 	} else {
 		target = getUploadTarget(symlinkPath, target, uploadParams.IsFlat(), placeholdersUsed)
 	}
-	return &uploadTaskData{target: target, path: path, isDir: isDir,
+	return &uploadTaskData{
+		target: target, path: path, isDir: isDir,
 		groups: groups, size: len(groups), uploadParams: uploadParams,
 		vcsCache: vcsCache,
 	}, nil
@@ -450,7 +451,7 @@ func getUploadTarget(rootPath, target string, isFlat, placeholdersUsed bool) str
 // Uploads the file in the specified local path to the specified target path.
 // Returns true if the file was successfully uploaded.
 func (us *UploadService) uploadFile(artifact UploadData, uploadParams UploadParams, logMsgPrefix string) (*fileutils.FileDetails, bool, error) {
-	var checksumDeployed = false
+	checksumDeployed := false
 	var resp *http.Response
 	var details *fileutils.FileDetails
 	var body []byte
@@ -489,7 +490,7 @@ func (us *UploadService) shouldTryChecksumDeploy(fileSize int64, uploadParams Up
 func (us *UploadService) uploadFileFromReader(getReaderFunc func() (io.Reader, error), targetUrlWithProps string, uploadParams UploadParams, logMsgPrefix string, details *fileutils.FileDetails) (bool, error) {
 	var resp *http.Response
 	var body []byte
-	var checksumDeployed = false
+	checksumDeployed := false
 	var e error
 	httpClientsDetails := us.ArtDetails.CreateHttpClientDetails()
 	if !us.DryRun {
@@ -624,7 +625,8 @@ func addExplodeHeader(httpClientsDetails *httputils.HttpClientDetails, isExplode
 }
 
 func (us *UploadService) tryChecksumDeploy(details *fileutils.FileDetails, targetPath string, httpClientsDetails httputils.HttpClientDetails,
-	client *jfroghttpclient.JfrogHttpClient) (resp *http.Response, body []byte, err error) {
+	client *jfroghttpclient.JfrogHttpClient,
+) (resp *http.Response, body []byte, err error) {
 	requestClientDetails := httpClientsDetails.Clone()
 	utils.AddHeader("X-Checksum-Deploy", "true", &requestClientDetails.Headers)
 	utils.AddChecksumHeaders(requestClientDetails.Headers, details)
@@ -810,7 +812,8 @@ func (us *UploadService) CreateUploadAsZipFunc(uploadResult *utils.Result, targe
 // archiveDataReader is a ContentReader of UploadData items containing the details of the files to stream.
 // saveFilesPathsFunc (optional) is a func that is called for each file that is written into the ZIP, and gets the file's local path as a parameter.
 func (us *UploadService) readFilesAsZip(archiveDataReader *content.ContentReader, progressPrefix string, flat, symlink bool,
-	saveFilesPathsFunc func(sourcePath string) error, errorsQueue *clientutils.ErrorsQueue, zipReadersWg *sync.WaitGroup) io.Reader {
+	saveFilesPathsFunc func(sourcePath string) error, errorsQueue *clientutils.ErrorsQueue, zipReadersWg *sync.WaitGroup,
+) io.Reader {
 	pr, pw := io.Pipe()
 	zipReadersWg.Add(1)
 

@@ -8,14 +8,16 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
-const tokenPath = "api/security/token"
-const APIKeyPath = "api/security/apiKey"
+const (
+	tokenPath  = "api/security/token"
+	APIKeyPath = "api/security/apiKey"
+)
 
 type SecurityService struct {
 	client     *jfroghttpclient.JfrogHttpClient
@@ -92,7 +94,7 @@ func (ss *SecurityService) GetAPIKey() (string, error) {
 }
 
 func getApiKeyFromBody(body []byte) (string, error) {
-	var data = make(map[string]interface{})
+	data := make(map[string]interface{})
 	if err := json.Unmarshal(body, &data); err != nil {
 		return "", errorutils.CheckErrorf("unable to decode json. Error: %w Upstream response: %s", err, string(body))
 	}

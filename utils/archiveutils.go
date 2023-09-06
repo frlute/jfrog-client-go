@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 	"github.com/jfrog/gofrog/unarchive"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
 )
 
 // localPath - The path of the downloaded archive file.
@@ -37,7 +37,7 @@ func ExtractArchive(localPath, localFileName, originFileName, logMsgPrefix strin
 	if err != nil {
 		return err
 	}
-	err = os.MkdirAll(extractionPath, 0755)
+	err = os.MkdirAll(extractionPath, 0o755)
 	if errorutils.CheckError(err) != nil {
 		return err
 	}

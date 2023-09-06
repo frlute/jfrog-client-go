@@ -2,9 +2,10 @@ package jfroghttpclient
 
 import (
 	"context"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
 	"net/http"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/http/httpclient"
 )
 
 func JfrogClientBuilder() *jfrogHttpClientBuilder {

@@ -5,18 +5,18 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/frlute/jfrog-client-go/utils/log"
 	"github.com/jfrog/gofrog/version"
-	"github.com/jfrog/jfrog-client-go/utils/log"
 
-	artifactoryutils "github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
+	artifactoryutils "github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
 )
 
 const ArtifactoryMinSupportedVersion = "6.10.0"
@@ -93,7 +93,7 @@ func addGoVersion(version string, urlPath *string) {
 }
 
 // localPath - The location of the file on the file system.
-// pathInArtifactory - The path of the file in Artifactory for example: go-repo/github.com/jfrog/jfrog-client-go/@v/v1.1.1.zip
+// pathInArtifactory - The path of the file in Artifactory for example: go-repo/github.com/frlute/jfrog-client-go/@v/v1.1.1.zip
 // version - The version of the project that being uploaded.
 // props - The properties to be assigned for each artifact
 // ext - The extension of the file: zip, mod, info. This extension will be joined with the version for the path. For example: v1.2.3.info or v1.2.3.zip

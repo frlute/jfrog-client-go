@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
 
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type PermissionTargetService struct {
@@ -79,7 +79,7 @@ func (pts *PermissionTargetService) performRequest(params PermissionTargetParams
 	}
 	httpClientsDetails := pts.ArtDetails.CreateHttpClientDetails()
 	utils.SetContentType("application/json", &httpClientsDetails.Headers)
-	var url = pts.ArtDetails.GetUrl() + "api/v2/security/permissions/" + params.Name
+	url := pts.ArtDetails.GetUrl() + "api/v2/security/permissions/" + params.Name
 	var operationString string
 	var resp *http.Response
 	var body []byte

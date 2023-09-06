@@ -3,12 +3,13 @@ package auth
 import (
 	"encoding/base64"
 	"encoding/json"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
 	"strings"
 	"time"
 
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
+
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type CreateTokenResponseData struct {

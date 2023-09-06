@@ -1,10 +1,11 @@
 package tests
 
 import (
-	"github.com/jfrog/jfrog-client-go/pipelines/services"
-	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/pipelines/services"
+	"github.com/stretchr/testify/assert"
 )
 
 const (

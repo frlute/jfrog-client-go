@@ -2,10 +2,11 @@ package services
 
 import (
 	"fmt"
-	"github.com/jfrog/gofrog/datastructures"
-	xrayUtils "github.com/jfrog/jfrog-client-go/xray/services/utils"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	xrayUtils "github.com/frlute/jfrog-client-go/xray/services/utils"
+	"github.com/jfrog/gofrog/datastructures"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestCreateScanGraphQueryParams(t *testing.T) {
@@ -17,23 +18,41 @@ func TestCreateScanGraphQueryParams(t *testing.T) {
 		scanType      ScanType
 		expectedQuery string
 	}{
-		{"with_project_key", "p1", "", nil, Binary,
-			fmt.Sprintf("?%s%s&%s%s", projectQueryParam, "p1", scanTypeQueryParam, Binary)},
+		{
+			"with_project_key", "p1", "", nil, Binary,
+			fmt.Sprintf("?%s%s&%s%s", projectQueryParam, "p1", scanTypeQueryParam, Binary),
+		},
 
-		{"with_repo_path", "", "r1", nil, Binary,
-			fmt.Sprintf("?%s%s&%s%s", repoPathQueryParam, "r1", scanTypeQueryParam, Binary)},
+		{
+			"with_repo_path", "", "r1", nil, Binary,
+			fmt.Sprintf("?%s%s&%s%s", repoPathQueryParam, "r1", scanTypeQueryParam, Binary),
+		},
 
-		{"with_watches", "", "", []string{"w1", "w2"}, Binary,
-			fmt.Sprintf("?%s%s&%s%s&%s%s", watchesQueryParam, "w1", watchesQueryParam, "w2", scanTypeQueryParam, Binary)},
+		{
+			"with_watches", "", "",
+			[]string{"w1", "w2"},
+			Binary,
+			fmt.Sprintf("?%s%s&%s%s&%s%s", watchesQueryParam, "w1", watchesQueryParam, "w2", scanTypeQueryParam, Binary),
+		},
 
-		{"with_empty_watch_string", "", "", []string{""}, "",
-			""},
+		{
+			"with_empty_watch_string", "", "",
+			[]string{""},
+			"",
+			"",
+		},
 
-		{"without_context", "", "", nil, Dependency,
-			fmt.Sprintf("?%s%s", scanTypeQueryParam, Dependency)},
+		{
+			"without_context", "", "", nil, Dependency,
+			fmt.Sprintf("?%s%s", scanTypeQueryParam, Dependency),
+		},
 
-		{"without_scan_type", "", "", []string{"w1", "w2"}, "",
-			fmt.Sprintf("?%s%s&%s%s", watchesQueryParam, "w1", watchesQueryParam, "w2")},
+		{
+			"without_scan_type", "", "",
+			[]string{"w1", "w2"},
+			"",
+			fmt.Sprintf("?%s%s&%s%s", watchesQueryParam, "w1", watchesQueryParam, "w2"),
+		},
 	}
 	for _, test := range tests {
 		t.Run(test.testName, func(t *testing.T) {

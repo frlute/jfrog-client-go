@@ -2,11 +2,12 @@ package services
 
 import (
 	"encoding/json"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
 	"net/http"
+
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 // GetPipelineResource fetches pipeline resource information for the given full repository name

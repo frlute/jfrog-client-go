@@ -15,31 +15,31 @@ import (
 	"time"
 
 	"github.com/buger/jsonparser"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	testUtils "github.com/jfrog/jfrog-client-go/utils/tests"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	testUtils "github.com/frlute/jfrog-client-go/utils/tests"
 
-	buildinfo "github.com/jfrog/build-info-go/entities"
+	buildinfo "github.com/frlute/build-info-go/entities"
 
-	accessAuth "github.com/jfrog/jfrog-client-go/access/auth"
-	accessServices "github.com/jfrog/jfrog-client-go/access/services"
-	pipelinesAuth "github.com/jfrog/jfrog-client-go/pipelines/auth"
-	pipelinesServices "github.com/jfrog/jfrog-client-go/pipelines/services"
+	accessAuth "github.com/frlute/jfrog-client-go/access/auth"
+	accessServices "github.com/frlute/jfrog-client-go/access/services"
+	pipelinesAuth "github.com/frlute/jfrog-client-go/pipelines/auth"
+	pipelinesServices "github.com/frlute/jfrog-client-go/pipelines/services"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils/tests"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils/tests"
 
-	artifactoryAuth "github.com/jfrog/jfrog-client-go/artifactory/auth"
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	distributionAuth "github.com/jfrog/jfrog-client-go/distribution/auth"
-	distributionServices "github.com/jfrog/jfrog-client-go/distribution/services"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
-	xrayAuth "github.com/jfrog/jfrog-client-go/xray/auth"
-	xrayServices "github.com/jfrog/jfrog-client-go/xray/services"
+	artifactoryAuth "github.com/frlute/jfrog-client-go/artifactory/auth"
+	"github.com/frlute/jfrog-client-go/artifactory/services"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	distributionAuth "github.com/frlute/jfrog-client-go/distribution/auth"
+	distributionServices "github.com/frlute/jfrog-client-go/distribution/services"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
+	xrayAuth "github.com/frlute/jfrog-client-go/xray/auth"
+	xrayServices "github.com/frlute/jfrog-client-go/xray/services"
 	"github.com/mholt/archiver/v3"
 	"github.com/stretchr/testify/assert"
 )
@@ -972,7 +972,6 @@ func deleteBuild(buildName string) error {
 	}
 
 	resp, _, err := client.SendDelete(artDetails.GetUrl()+"api/build/"+buildName+"?deleteAll=1", nil, artHTTPDetails, "")
-
 	if err != nil {
 		return err
 	}

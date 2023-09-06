@@ -4,10 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
 	"time"
 
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type ExecutionHandlerFunc func() (bool, error)

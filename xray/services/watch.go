@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
 
-	artUtils "github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
-	"github.com/jfrog/jfrog-client-go/xray/services/utils"
+	artUtils "github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/xray/services/utils"
 )
 
 const (
@@ -87,7 +87,7 @@ func (xws *WatchService) Create(params utils.WatchParams) error {
 
 	httpClientsDetails := xws.XrayDetails.CreateHttpClientDetails()
 	artUtils.SetContentType("application/json", &httpClientsDetails.Headers)
-	var url = xws.getWatchURL()
+	url := xws.getWatchURL()
 
 	log.Info(fmt.Sprintf("Creating a new Watch named %s on JFrog Xray....", params.Name))
 	resp, body, err := xws.client.SendPost(url, content, &httpClientsDetails)
@@ -129,11 +129,10 @@ func (xws *WatchService) Update(params utils.WatchParams) error {
 
 	httpClientsDetails := xws.XrayDetails.CreateHttpClientDetails()
 	artUtils.SetContentType("application/json", &httpClientsDetails.Headers)
-	var url = xws.getWatchURL() + "/" + params.Name
+	url := xws.getWatchURL() + "/" + params.Name
 
 	log.Info("Updating watch...")
 	resp, body, err := xws.client.SendPut(url, content, &httpClientsDetails)
-
 	if err != nil {
 		return err
 	}

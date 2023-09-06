@@ -5,17 +5,19 @@ import (
 	"fmt"
 	"net/http"
 
-	artifactoryUtils "github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	distributionUtils "github.com/jfrog/jfrog-client-go/distribution/services/utils"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	artifactoryUtils "github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	distributionUtils "github.com/frlute/jfrog-client-go/distribution/services/utils"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
-const defaultMaxWaitMinutes = 60                     // 1 hour
-const DefaultDistributeSyncSleepIntervalSeconds = 10 // 10 seconds
+const (
+	defaultMaxWaitMinutes                     = 60 // 1 hour
+	DefaultDistributeSyncSleepIntervalSeconds = 10 // 10 seconds
+)
 
 type DistributeReleaseBundleService struct {
 	client         *jfroghttpclient.JfrogHttpClient

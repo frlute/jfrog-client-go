@@ -9,12 +9,12 @@ import (
 	"testing"
 	"time"
 
-	artifactoryServices "github.com/jfrog/jfrog-client-go/artifactory/services"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/distribution/services"
-	distributionServicesUtils "github.com/jfrog/jfrog-client-go/distribution/services/utils"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
+	artifactoryServices "github.com/frlute/jfrog-client-go/artifactory/services"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/distribution/services"
+	distributionServicesUtils "github.com/frlute/jfrog-client-go/distribution/services/utils"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -35,8 +35,10 @@ const (
 	bundleVersion                  = "10"
 )
 
-var httpClient *httpclient.HttpClient
-var distHttpDetails httputils.HttpClientDetails
+var (
+	httpClient      *httpclient.HttpClient
+	distHttpDetails httputils.HttpClientDetails
+)
 
 func TestDistributionServices(t *testing.T) {
 	initDistributionTest(t)

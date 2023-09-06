@@ -6,11 +6,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type IntegrationsService struct {
@@ -88,7 +88,8 @@ func (is *IntegrationsService) CreateBitbucketIntegration(integrationName, usern
 			Name:                  integrationName,
 			MasterIntegrationId:   bitbucketId,
 			MasterIntegrationName: BitbucketName,
-			ProjectId:             defaultProjectId},
+			ProjectId:             defaultProjectId,
+		},
 		FormJSONValues: []jsonValues{
 			{urlLabel, bitbucketDefaultUrl},
 			{usernameLabel, username},
@@ -104,7 +105,8 @@ func (is *IntegrationsService) CreateBitbucketServerIntegration(integrationName,
 			Name:                  integrationName,
 			MasterIntegrationId:   bitbucketServerId,
 			MasterIntegrationName: BitbucketServerName,
-			ProjectId:             defaultProjectId},
+			ProjectId:             defaultProjectId,
+		},
 		FormJSONValues: []jsonValues{
 			{urlLabel, url},
 			{usernameLabel, username},
@@ -120,7 +122,8 @@ func (is *IntegrationsService) CreateGitlabIntegration(integrationName, url, tok
 			Name:                  integrationName,
 			MasterIntegrationId:   gitlabId,
 			MasterIntegrationName: GitlabName,
-			ProjectId:             defaultProjectId},
+			ProjectId:             defaultProjectId,
+		},
 		FormJSONValues: []jsonValues{
 			{urlLabel, url},
 			{tokenLabel, token},
@@ -135,7 +138,8 @@ func (is *IntegrationsService) CreateArtifactoryIntegration(integrationName, url
 			Name:                  integrationName,
 			MasterIntegrationId:   artifactoryId,
 			MasterIntegrationName: ArtifactoryName,
-			ProjectId:             defaultProjectId},
+			ProjectId:             defaultProjectId,
+		},
 		FormJSONValues: []jsonValues{
 			{urlLabel, strings.TrimSuffix(url, "/")},
 			{userLabel, user},

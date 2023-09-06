@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/access/services"
+	"github.com/frlute/jfrog-client-go/access/services"
 	"github.com/stretchr/testify/assert"
 )
 

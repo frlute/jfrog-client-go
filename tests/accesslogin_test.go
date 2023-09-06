@@ -2,16 +2,17 @@ package tests
 
 import (
 	"encoding/json"
-	accessAuth "github.com/jfrog/jfrog-client-go/access/auth"
-	"github.com/jfrog/jfrog-client-go/access/services"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/stretchr/testify/assert"
 	"io"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	accessAuth "github.com/frlute/jfrog-client-go/access/auth"
+	"github.com/frlute/jfrog-client-go/access/services"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -55,7 +56,6 @@ func TestAccessLogin(t *testing.T) {
 		default:
 			assert.Fail(t, "received unexpected request method")
 		}
-
 	})
 	ts := httptest.NewServer(handler)
 	defer ts.Close()
@@ -84,7 +84,6 @@ func TestAccessLoginTimeout(t *testing.T) {
 		default:
 			assert.Fail(t, "received unexpected request method")
 		}
-
 	})
 	ts := httptest.NewServer(handler)
 	defer ts.Close()

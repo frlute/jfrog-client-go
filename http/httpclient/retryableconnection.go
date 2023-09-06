@@ -3,15 +3,18 @@ package httpclient
 import (
 	"bufio"
 	"errors"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
-type ConnectHandler func() (*http.Response, error)
-type ErrorHandler func([]byte) error
+type (
+	ConnectHandler func() (*http.Response, error)
+	ErrorHandler   func([]byte) error
+)
 
 // Retryable connection specific errors
 var (

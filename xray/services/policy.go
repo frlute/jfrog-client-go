@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
 
-	artUtils "github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
-	"github.com/jfrog/jfrog-client-go/xray/services/utils"
+	artUtils "github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/xray/services/utils"
 )
 
 const (
@@ -84,7 +84,7 @@ func (xps *PolicyService) Create(params utils.PolicyParams) error {
 
 	httpClientsDetails := xps.XrayDetails.CreateHttpClientDetails()
 	artUtils.SetContentType("application/json", &httpClientsDetails.Headers)
-	var url = xps.getPolicyURL()
+	url := xps.getPolicyURL()
 
 	log.Info(fmt.Sprintf("Creating a new Policy named %s on JFrog Xray....", params.Name))
 	resp, body, err := xps.client.SendPost(url, content, &httpClientsDetails)
@@ -114,11 +114,10 @@ func (xps *PolicyService) Update(params utils.PolicyParams) error {
 
 	httpClientsDetails := xps.XrayDetails.CreateHttpClientDetails()
 	artUtils.SetContentType("application/json", &httpClientsDetails.Headers)
-	var url = xps.getPolicyURL() + "/" + params.Name
+	url := xps.getPolicyURL() + "/" + params.Name
 
 	log.Info("Updating policy...")
 	resp, body, err := xps.client.SendPut(url, content, &httpClientsDetails)
-
 	if err != nil {
 		return err
 	}

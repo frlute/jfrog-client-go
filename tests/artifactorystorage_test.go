@@ -2,14 +2,15 @@ package tests
 
 import (
 	"errors"
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
-	servicesutils "github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/stretchr/testify/assert"
 	"path"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/artifactory/services"
+	servicesutils "github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestArtifactoryStorage(t *testing.T) {

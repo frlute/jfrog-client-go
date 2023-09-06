@@ -12,16 +12,16 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jfrog/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io"
 
-	"github.com/jfrog/build-info-go/entities"
+	"github.com/frlute/build-info-go/entities"
 	"github.com/jfrog/gofrog/stringutils"
 	"github.com/jfrog/gofrog/version"
 
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
 
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 const (
@@ -580,7 +580,7 @@ func SaveFileTransferDetailsInFile(filePath string, details *[]FileTransferDetai
 	if err != nil {
 		return errorutils.CheckError(err)
 	}
-	return errorutils.CheckError(os.WriteFile(filePath, files, 0700))
+	return errorutils.CheckError(os.WriteFile(filePath, files, 0o700))
 }
 
 // Extract sha256 of the uploaded file (calculated by artifactory) from the response's body.

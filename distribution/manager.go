@@ -1,10 +1,10 @@
 package distribution
 
 import (
-	"github.com/jfrog/jfrog-client-go/config"
-	"github.com/jfrog/jfrog-client-go/distribution/services"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/config"
+	"github.com/frlute/jfrog-client-go/distribution/services"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
 )
 
 type DistributionServicesManager struct {

@@ -2,9 +2,10 @@ package usage
 
 import (
 	"fmt"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIsVersionCompatible(t *testing.T) {

@@ -1,14 +1,15 @@
 package utils
 
 import (
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/stretchr/testify/assert"
 )
 
 type gitExecutor struct {
@@ -22,6 +23,7 @@ func NewGitExecutor(dotGitPath string) *gitExecutor {
 func (m *gitExecutor) execGit(args ...string) (string, string, error) {
 	return m.gitManager.ExecGit(args...)
 }
+
 func (m *gitExecutor) GetUrl() (string, string, error) {
 	return m.execGit("config", "--get", "remote.origin.url")
 }

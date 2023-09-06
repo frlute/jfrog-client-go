@@ -7,11 +7,11 @@ import (
 	"regexp"
 	"strings"
 
-	biutils "github.com/jfrog/build-info-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	biutils "github.com/frlute/build-info-go/utils"
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 // Return all the existing paths of the provided root path
@@ -125,7 +125,7 @@ func GetFileSymlinkPath(filePath string) (string, error) {
 	if errorutils.CheckError(e) != nil {
 		return "", e
 	}
-	var symlinkPath = ""
+	symlinkPath := ""
 	if fileutils.IsFileSymlink(fileInfo) {
 		symlinkPath, e = os.Readlink(filePath)
 		if errorutils.CheckError(e) != nil {

@@ -8,24 +8,24 @@ import (
 	"path/filepath"
 	"sort"
 
-	biutils "github.com/jfrog/build-info-go/utils"
+	biutils "github.com/frlute/build-info-go/utils"
 	"github.com/jfrog/gofrog/version"
 
-	"github.com/jfrog/build-info-go/entities"
+	"github.com/frlute/build-info-go/entities"
 
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
 
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/auth"
 	"github.com/jfrog/gofrog/parallel"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
-	"github.com/jfrog/jfrog-client-go/auth"
 
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	clientutils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	clientio "github.com/jfrog/jfrog-client-go/utils/io"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	clientutils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	clientio "github.com/frlute/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 type DownloadService struct {
@@ -364,7 +364,8 @@ func createDownloadFileDetails(downloadPath, localPath, localFileName string, do
 		LocalFileName: localFileName,
 		Size:          downloadData.Dependency.Size,
 		ExpectedSha1:  downloadData.Dependency.Actual_Sha1,
-		SkipChecksum:  skipChecksum}
+		SkipChecksum:  skipChecksum,
+	}
 	return
 }
 
@@ -403,7 +404,8 @@ func (ds *DownloadService) downloadFile(downloadFileDetails *httpclient.Download
 		FileSize:      downloadFileDetails.Size,
 		SplitCount:    downloadParams.SplitCount,
 		Explode:       downloadParams.IsExplode(),
-		SkipChecksum:  downloadParams.SkipChecksum}
+		SkipChecksum:  downloadParams.SkipChecksum,
+	}
 
 	resp, err := ds.client.DownloadFileConcurrently(concurrentDownloadFlags, logMsgPrefix, &httpClientsDetails, ds.Progress)
 	if err != nil {

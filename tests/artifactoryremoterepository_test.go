@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services"
+	"github.com/frlute/jfrog-client-go/artifactory/services"
 	"github.com/stretchr/testify/assert"
 )
 

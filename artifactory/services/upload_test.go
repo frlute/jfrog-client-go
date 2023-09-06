@@ -4,12 +4,12 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils"
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestDebianProperties(t *testing.T) {
-	var debianPaths = []struct {
+	debianPaths := []struct {
 		in       string
 		expected string
 	}{
@@ -29,7 +29,7 @@ func TestDebianProperties(t *testing.T) {
 }
 
 func TestBuildUploadUrls(t *testing.T) {
-	var testsParams = []struct {
+	testsParams := []struct {
 		targetPath                  string
 		targetProps                 string
 		buildProps                  string

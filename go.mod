@@ -1,4 +1,4 @@
-module github.com/jfrog/jfrog-client-go
+module github.com/frlute/jfrog-client-go
 
 go 1.20
 
@@ -9,7 +9,7 @@ require (
 	github.com/go-git/go-git/v5 v5.8.1
 	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/gookit/color v1.5.4
-	github.com/jfrog/build-info-go v1.9.8
+	github.com/frlute/build-info-go v0.0.0-20230906124509-86f53e041b27
 	github.com/jfrog/gofrog v1.3.0
 	github.com/mholt/archiver/v3 v3.5.1
 	github.com/stretchr/testify v1.8.4
@@ -21,7 +21,7 @@ require (
 
 require (
 	dario.cat/mergo v1.0.0 // indirect
-	github.com/CycloneDX/cyclonedx-go v0.7.1 // indirect
+	github.com/frlute/cyclonedx-go v0.0.0-20230906123045-72924cc9691a // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
 	github.com/acomagu/bufpipe v1.0.4 // indirect
 	github.com/andybalholm/brotli v1.0.1 // indirect
@@ -57,6 +57,6 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-// replace github.com/jfrog/build-info-go => github.com/jfrog/build-info-go v1.8.9-0.20230803131422-8230595ceb86
+// replace github.com/frlute/build-info-go => github.com/frlute/build-info-go v1.8.9-0.20230803131422-8230595ceb86
 
 // replace github.com/jfrog/gofrog => github.com/jfrog/gofrog dev

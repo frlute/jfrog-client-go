@@ -10,17 +10,17 @@ import (
 	"strings"
 	"sync"
 
-	buildinfo "github.com/jfrog/build-info-go/entities"
+	buildinfo "github.com/frlute/build-info-go/entities"
 
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
-	clientio "github.com/jfrog/jfrog-client-go/utils/io"
-	"github.com/jfrog/jfrog-client-go/utils/io/content"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
-	"github.com/jfrog/jfrog-client-go/utils/log"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
+	clientio "github.com/frlute/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io/content"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
+	"github.com/frlute/jfrog-client-go/utils/log"
 )
 
 const (
@@ -35,7 +35,8 @@ const (
 
 func UploadFile(localPath, url, logMsgPrefix string, artifactoryDetails *auth.ServiceDetails, details *fileutils.FileDetails,
 	httpClientsDetails httputils.HttpClientDetails, client *jfroghttpclient.JfrogHttpClient, includeChecksums bool,
-	progress clientio.ProgressMgr) (*http.Response, []byte, error) {
+	progress clientio.ProgressMgr,
+) (*http.Response, []byte, error) {
 	var err error
 	requestClientDetails := httpClientsDetails.Clone()
 	if includeChecksums {
@@ -52,7 +53,8 @@ func UploadFile(localPath, url, logMsgPrefix string, artifactoryDetails *auth.Se
 }
 
 func UploadFileFromReader(reader io.Reader, url string, artifactoryDetails *auth.ServiceDetails, details *fileutils.FileDetails,
-	httpClientsDetails httputils.HttpClientDetails, client *jfroghttpclient.JfrogHttpClient) (*http.Response, []byte, error) {
+	httpClientsDetails httputils.HttpClientDetails, client *jfroghttpclient.JfrogHttpClient,
+) (*http.Response, []byte, error) {
 	requestClientDetails := httpClientsDetails.Clone()
 	AddChecksumHeaders(requestClientDetails.Headers, details)
 	AddAuthHeaders(requestClientDetails.Headers, *artifactoryDetails)
@@ -480,7 +482,7 @@ func filterBuildAqlSearchResults(reader *content.ContentReader, buildArtifactsSh
 		return nil, err
 	}
 	reader.Reset()
-	var priorityLevel = 0
+	priorityLevel := 0
 	// Step 2 - Append the files to the final results file.
 	// Scan each priority artifacts and apply them to the final result, skip results that have been already written, by higher priority.
 	for _, priority := range priorityArray {

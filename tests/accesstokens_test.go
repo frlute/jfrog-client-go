@@ -1,10 +1,11 @@
 package tests
 
 import (
-	"github.com/jfrog/jfrog-client-go/access/services"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/access/services"
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/stretchr/testify/assert"
 )
 
 const testExpiredInSeconds = 1

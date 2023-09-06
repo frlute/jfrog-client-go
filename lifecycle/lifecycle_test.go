@@ -2,14 +2,15 @@ package lifecycle
 
 import (
 	"encoding/json"
-	artifactoryAuth "github.com/jfrog/jfrog-client-go/artifactory/auth"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	lifecycle "github.com/jfrog/jfrog-client-go/lifecycle/services"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	artifactoryAuth "github.com/frlute/jfrog-client-go/artifactory/auth"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	lifecycle "github.com/frlute/jfrog-client-go/lifecycle/services"
+	"github.com/stretchr/testify/assert"
 )
 
 var testRb = lifecycle.ReleaseBundleDetails{
@@ -42,7 +43,6 @@ func TestSimpleGetReleaseBundleStatus(t *testing.T) {
 			assert.Equal(t, 1, *requestNum)
 		})
 	}
-
 }
 
 func TestComplexReleaseBundleWaitForOperation(t *testing.T) {

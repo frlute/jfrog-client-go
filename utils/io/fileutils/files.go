@@ -13,10 +13,10 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/jfrog/build-info-go/entities"
-	biutils "github.com/jfrog/build-info-go/utils"
+	"github.com/frlute/build-info-go/entities"
+	biutils "github.com/frlute/build-info-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 	gofrog "github.com/jfrog/gofrog/io"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
 	"golang.org/x/exp/slices"
 )
 
@@ -261,7 +261,7 @@ func GetFileSize(file *os.File) (int64, error) {
 
 func CreateFilePath(localPath, fileName string) (string, error) {
 	if localPath != "" {
-		err := os.MkdirAll(localPath, 0777)
+		err := os.MkdirAll(localPath, 0o777)
 		if errorutils.CheckError(err) != nil {
 			return "", err
 		}

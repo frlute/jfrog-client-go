@@ -1,8 +1,9 @@
 package services
 
 import (
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
 	"net/url"
+
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
 // constructPipelinesURL creates URL with all required details to make api call

@@ -5,7 +5,7 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/jfrog/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -71,7 +71,7 @@ func assertSplitWithEscape(str string, expected []string, t *testing.T) {
 }
 
 func TestConvertLocalPatternToRegexp(t *testing.T) {
-	var tests = []struct {
+	tests := []struct {
 		localPath string
 		expected  string
 	}{
@@ -86,6 +86,7 @@ func TestConvertLocalPatternToRegexp(t *testing.T) {
 		assert.Equal(t, test.expected, ConvertLocalPatternToRegexp(test.localPath, RegExp))
 	}
 }
+
 func TestCleanPath(t *testing.T) {
 	if io.IsWindows() {
 		parameter := "\\\\foo\\\\baz\\\\..\\\\bar\\\\*"
@@ -165,6 +166,7 @@ func TestCleanPath(t *testing.T) {
 		}
 	}
 }
+
 func TestIsWildcardParentheses(t *testing.T) {
 	strA := "/tmp/cache/download/(github.com/)"
 	strB := "/tmp/cache/download/(github.com/*)"

@@ -2,10 +2,11 @@ package config
 
 import (
 	"context"
-	"github.com/jfrog/jfrog-client-go/auth"
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
 	"net/http"
 	"time"
+
+	"github.com/frlute/jfrog-client-go/auth"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
 )
 
 func NewConfigBuilder() *servicesConfigBuilder {

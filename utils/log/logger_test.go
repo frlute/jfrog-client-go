@@ -2,9 +2,10 @@ package log
 
 import (
 	"bytes"
-	"github.com/jfrog/jfrog-client-go/utils/io"
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/utils/io"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLoggerRemoveEmojis(t *testing.T) {

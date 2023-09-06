@@ -3,12 +3,13 @@ package tests
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/jfrog/jfrog-client-go/artifactory/services/utils/tests/xray"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	"github.com/jfrog/jfrog-client-go/xray/services"
-	"github.com/stretchr/testify/assert"
 	"strconv"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/artifactory/services/utils/tests/xray"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	"github.com/frlute/jfrog-client-go/xray/services"
+	"github.com/stretchr/testify/assert"
 )
 
 var testXrayReportService *services.ReportService
@@ -51,7 +52,7 @@ func reportAll(t *testing.T) {
 	assert.NoError(t, err)
 	validateResponse(t, xray.VulnerabilityRequestResponse, report)
 
-	var reportId = strconv.Itoa(report.ReportId)
+	reportId := strconv.Itoa(report.ReportId)
 	details, err := testXrayReportService.Details(reportId)
 	assert.NoError(t, err)
 	validateResponse(t, xray.VulnerabilityReportStatusResponse, details)

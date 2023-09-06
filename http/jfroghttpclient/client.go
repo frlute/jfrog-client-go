@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/jfrog/jfrog-client-go/http/httpclient"
-	ioutils "github.com/jfrog/jfrog-client-go/utils/io"
-	"github.com/jfrog/jfrog-client-go/utils/io/fileutils"
-	"github.com/jfrog/jfrog-client-go/utils/io/httputils"
+	"github.com/frlute/jfrog-client-go/http/httpclient"
+	ioutils "github.com/frlute/jfrog-client-go/utils/io"
+	"github.com/frlute/jfrog-client-go/utils/io/fileutils"
+	"github.com/frlute/jfrog-client-go/utils/io/httputils"
 )
 
 type JfrogHttpClient struct {
@@ -84,7 +84,8 @@ func (rtc *JfrogHttpClient) SendPut(url string, content []byte, httpClientsDetai
 }
 
 func (rtc *JfrogHttpClient) Send(method string, url string, content []byte, followRedirect bool, closeBody bool,
-	httpClientsDetails *httputils.HttpClientDetails, logMsgPrefix string) (resp *http.Response, respBody []byte, redirectUrl string, err error) {
+	httpClientsDetails *httputils.HttpClientDetails, logMsgPrefix string,
+) (resp *http.Response, respBody []byte, redirectUrl string, err error) {
 	err = rtc.runPreRequestInterceptors(httpClientsDetails)
 	if err != nil {
 		return
@@ -93,7 +94,8 @@ func (rtc *JfrogHttpClient) Send(method string, url string, content []byte, foll
 }
 
 func (rtc *JfrogHttpClient) UploadFile(localPath, url, logMsgPrefix string, httpClientsDetails *httputils.HttpClientDetails,
-	progress ioutils.ProgressMgr) (resp *http.Response, body []byte, err error) {
+	progress ioutils.ProgressMgr,
+) (resp *http.Response, body []byte, err error) {
 	err = rtc.runPreRequestInterceptors(httpClientsDetails)
 	if err != nil {
 		return
@@ -102,7 +104,8 @@ func (rtc *JfrogHttpClient) UploadFile(localPath, url, logMsgPrefix string, http
 }
 
 func (rtc *JfrogHttpClient) UploadFileFromReader(reader io.Reader, url string, httpClientsDetails *httputils.HttpClientDetails,
-	size int64) (resp *http.Response, body []byte, err error) {
+	size int64,
+) (resp *http.Response, body []byte, err error) {
 	err = rtc.runPreRequestInterceptors(httpClientsDetails)
 	if err != nil {
 		return
@@ -119,7 +122,8 @@ func (rtc *JfrogHttpClient) ReadRemoteFile(downloadPath string, httpClientsDetai
 }
 
 func (rtc *JfrogHttpClient) DownloadFileWithProgress(downloadFileDetails *httpclient.DownloadFileDetails, logMsgPrefix string,
-	httpClientsDetails *httputils.HttpClientDetails, isExplode, bypassArchiveInspection bool, progress ioutils.ProgressMgr) (resp *http.Response, err error) {
+	httpClientsDetails *httputils.HttpClientDetails, isExplode, bypassArchiveInspection bool, progress ioutils.ProgressMgr,
+) (resp *http.Response, err error) {
 	err = rtc.runPreRequestInterceptors(httpClientsDetails)
 	if err != nil {
 		return
@@ -128,12 +132,14 @@ func (rtc *JfrogHttpClient) DownloadFileWithProgress(downloadFileDetails *httpcl
 }
 
 func (rtc *JfrogHttpClient) DownloadFile(downloadFileDetails *httpclient.DownloadFileDetails, logMsgPrefix string,
-	httpClientsDetails *httputils.HttpClientDetails, isExplode, bypassArchiveInspection bool) (resp *http.Response, err error) {
+	httpClientsDetails *httputils.HttpClientDetails, isExplode, bypassArchiveInspection bool,
+) (resp *http.Response, err error) {
 	return rtc.DownloadFileWithProgress(downloadFileDetails, logMsgPrefix, httpClientsDetails, isExplode, bypassArchiveInspection, nil)
 }
 
 func (rtc *JfrogHttpClient) DownloadFileConcurrently(flags httpclient.ConcurrentDownloadFlags,
-	logMsgPrefix string, httpClientsDetails *httputils.HttpClientDetails, progress ioutils.ProgressMgr) (resp *http.Response, err error) {
+	logMsgPrefix string, httpClientsDetails *httputils.HttpClientDetails, progress ioutils.ProgressMgr,
+) (resp *http.Response, err error) {
 	err = rtc.runPreRequestInterceptors(httpClientsDetails)
 	if err != nil {
 		return

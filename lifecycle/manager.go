@@ -1,9 +1,9 @@
 package lifecycle
 
 import (
-	"github.com/jfrog/jfrog-client-go/config"
-	"github.com/jfrog/jfrog-client-go/http/jfroghttpclient"
-	lifecycle "github.com/jfrog/jfrog-client-go/lifecycle/services"
+	"github.com/frlute/jfrog-client-go/config"
+	"github.com/frlute/jfrog-client-go/http/jfroghttpclient"
+	lifecycle "github.com/frlute/jfrog-client-go/lifecycle/services"
 )
 
 type LifecycleServicesManager struct {
@@ -34,13 +34,15 @@ func (lcs *LifecycleServicesManager) Client() *jfroghttpclient.JfrogHttpClient {
 }
 
 func (lcs *LifecycleServicesManager) CreateReleaseBundleFromBuilds(rbDetails lifecycle.ReleaseBundleDetails,
-	params lifecycle.CreateOrPromoteReleaseBundleParams, sourceBuilds lifecycle.CreateFromBuildsSource) error {
+	params lifecycle.CreateOrPromoteReleaseBundleParams, sourceBuilds lifecycle.CreateFromBuildsSource,
+) error {
 	rbService := lifecycle.NewReleaseBundlesService(lcs.config.GetServiceDetails(), lcs.client)
 	return rbService.CreateFromBuilds(rbDetails, params, sourceBuilds)
 }
 
 func (lcs *LifecycleServicesManager) CreateReleaseBundleFromBundles(rbDetails lifecycle.ReleaseBundleDetails,
-	params lifecycle.CreateOrPromoteReleaseBundleParams, sourceReleaseBundles lifecycle.CreateFromReleaseBundlesSource) error {
+	params lifecycle.CreateOrPromoteReleaseBundleParams, sourceReleaseBundles lifecycle.CreateFromReleaseBundlesSource,
+) error {
 	rbService := lifecycle.NewReleaseBundlesService(lcs.config.GetServiceDetails(), lcs.client)
 	return rbService.CreateFromBundles(rbDetails, params, sourceReleaseBundles)
 }

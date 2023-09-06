@@ -4,7 +4,7 @@ package utils
 import (
 	"sort"
 
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
 const (
@@ -299,12 +299,14 @@ func configureBuilds(payloadBody *WatchBody, params WatchParams) error {
 		}
 
 		if params.Builds.All.ExcludePatterns != nil || params.Builds.All.IncludePatterns != nil {
-			filters := []watchFilter{{
-				Type: "ant-patterns",
-				Value: WatchPathFilters{
-					ExcludePatterns: params.Builds.All.ExcludePatterns,
-					IncludePatterns: params.Builds.All.IncludePatterns,
-				}},
+			filters := []watchFilter{
+				{
+					Type: "ant-patterns",
+					Value: WatchPathFilters{
+						ExcludePatterns: params.Builds.All.ExcludePatterns,
+						IncludePatterns: params.Builds.All.IncludePatterns,
+					},
+				},
 			}
 			allBuilds.Filters = filters
 		}

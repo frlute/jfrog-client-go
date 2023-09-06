@@ -1,13 +1,14 @@
 package fileutils
 
 import (
-	"github.com/jfrog/jfrog-client-go/utils/io"
 	"os"
 	"path/filepath"
 	"reflect"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/frlute/jfrog-client-go/utils/io"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -215,9 +216,11 @@ func TestIsEqualToLocalFile(t *testing.T) {
 
 func TestListFilesByFilterFunc(t *testing.T) {
 	testDir := filepath.Join("testdata", "listextension")
-	expected := []string{filepath.Join(testDir, "a.proj"),
+	expected := []string{
+		filepath.Join(testDir, "a.proj"),
 		filepath.Join(testDir, "b.csproj"),
-		filepath.Join(testDir, "someproj.csproj")}
+		filepath.Join(testDir, "someproj.csproj"),
+	}
 
 	// List files with extension that satisfy the filter function.
 	filterFunc := func(filePath string) (bool, error) {

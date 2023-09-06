@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	artifactoryServices "github.com/jfrog/jfrog-client-go/artifactory/services"
-	clientUtils "github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/xray/services/utils"
+	artifactoryServices "github.com/frlute/jfrog-client-go/artifactory/services"
+	clientUtils "github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/xray/services/utils"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -152,7 +152,7 @@ func testXrayWatchSelectedRepos(t *testing.T) {
 		},
 	}
 
-	var repos = map[string]utils.WatchRepository{}
+	repos := map[string]utils.WatchRepository{}
 	repo := utils.NewWatchRepository(repo1Name, "default", utils.WatchRepositoryLocal)
 	repo.Filters.PackageTypes = []string{"npm", "maven"}
 	repo.Filters.Names = []string{"example-name"}
@@ -253,7 +253,6 @@ func testXrayWatchSelectedRepos(t *testing.T) {
 	assert.Equal(t, []string{"example-path-2"}, updatedTargetConfig.Repositories.Repositories[repo1Name].Filters.Paths)
 	assert.Equal(t, []string{"example-mime-type-2"}, updatedTargetConfig.Repositories.Repositories[repo1Name].Filters.MimeTypes)
 	assert.Equal(t, map[string]string{"some-key": "some-value-2"}, updatedTargetConfig.Repositories.Repositories[repo1Name].Filters.Properties)
-
 }
 
 func testXrayWatchBuildsByPattern(t *testing.T) {
@@ -387,6 +386,7 @@ func createAndIndexBuild(t *testing.T, buildName string) error {
 	err = testXrayBinMgrService.AddBuildsToIndexing([]string{buildName})
 	return err
 }
+
 func createWatchWithRetries(t *testing.T, params utils.WatchParams) {
 	createOrUpdateWatchWithRetries(t, params, false)
 }

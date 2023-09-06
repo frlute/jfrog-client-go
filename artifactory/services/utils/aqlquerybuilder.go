@@ -2,12 +2,13 @@ package utils
 
 import (
 	"fmt"
-	"golang.org/x/exp/slices"
 	"strconv"
 	"strings"
 
-	"github.com/jfrog/jfrog-client-go/utils"
-	"github.com/jfrog/jfrog-client-go/utils/errorutils"
+	"golang.org/x/exp/slices"
+
+	"github.com/frlute/jfrog-client-go/utils"
+	"github.com/frlute/jfrog-client-go/utils/errorutils"
 )
 
 // Returns an AQL body string to search file in Artifactory by pattern, according the specified arguments requirements.
@@ -123,40 +124,37 @@ func createAqlQueryForBuild(includeQueryPart string, artifactsQuery bool, builds
 
 // noinspection GoUnusedExportedFunction
 func CreateAqlQueryForYarn(npmName, npmVersion string) string {
-	itemsPart :=
-		`items.find({` +
-			`"@npm.name":"%s",` +
-			`"$or": [` +
-			// sometimes the npm.version in the repository is written with "v" prefix, so we search both syntaxes
-			`{"@npm.version":"%[2]s"},` +
-			`{"@npm.version":"v%[2]s"}` +
-			`]` +
-			`})%s`
+	itemsPart := `items.find({` +
+		`"@npm.name":"%s",` +
+		`"$or": [` +
+		// sometimes the npm.version in the repository is written with "v" prefix, so we search both syntaxes
+		`{"@npm.version":"%[2]s"},` +
+		`{"@npm.version":"v%[2]s"}` +
+		`]` +
+		`})%s`
 	return fmt.Sprintf(itemsPart, npmName, npmVersion, buildIncludeQueryPart([]string{"name", "repo", "path", "actual_sha1", "actual_md5", "sha256"}))
 }
 
 func CreateAqlQueryForPypi(repo, file string) string {
-	itemsPart :=
-		`items.find({` +
-			`"repo": "%s",` +
-			`"$or": [{` +
-			`"$and":[{` +
-			`"path": {"$match": "*"},` +
-			`"name": {"$match": "%s"}` +
-			`}]` +
-			`}]` +
-			`})%s`
+	itemsPart := `items.find({` +
+		`"repo": "%s",` +
+		`"$or": [{` +
+		`"$and":[{` +
+		`"path": {"$match": "*"},` +
+		`"name": {"$match": "%s"}` +
+		`}]` +
+		`}]` +
+		`})%s`
 	return fmt.Sprintf(itemsPart, repo, file, buildIncludeQueryPart([]string{"name", "repo", "path", "actual_md5", "actual_sha1", "sha256"}))
 }
 
 func CreateAqlQueryForLatestCreated(repo, path string) string {
-	itemsPart :=
-		`items.find({` +
-			`"repo": "%s",` +
-			`"path": {"$match": "%s"}` +
-			`})` +
-			`.sort({%s})` +
-			`.limit(1)`
+	itemsPart := `items.find({` +
+		`"repo": "%s",` +
+		`"path": {"$match": "%s"}` +
+		`})` +
+		`.sort({%s})` +
+		`.limit(1)`
 	return fmt.Sprintf(itemsPart, repo, path, buildSortQueryPart([]string{"created"}, "desc"))
 }
 
@@ -404,10 +402,9 @@ func buildSortQueryPart(sortFields []string, sortOrder string) string {
 
 func createPropsQuery(aqlBody, propKey string, propValues []string) string {
 	propKeyValQueryPart := buildKeyValQueryPart(propKey, propValues)
-	propsQuery :=
-		`items.find({` +
-			`"$and":[%s,{%s}]` +
-			`})%s`
+	propsQuery := `items.find({` +
+		`"$and":[%s,{%s}]` +
+		`})%s`
 	return fmt.Sprintf(propsQuery, aqlBody, propKeyValQueryPart, buildIncludeQueryPart([]string{"name", "repo", "path", "actual_sha1", "property"}))
 }
 
